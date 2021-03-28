@@ -3,7 +3,7 @@ services:
   postgres:
     restart: always
     container_name: postgres_db
-    image: postgres:latest
+    image: postgres:10
     ports:
       - '5432:5432'
     environment:
@@ -14,10 +14,9 @@ services:
   web:
     build: ./weWurx
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/weWurx
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/weWurx?useSSL=false
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: New123456
-      SPRING_DATASOURCE_DDL-AUTO: create
     expose:
       - '8080'
     ports:
