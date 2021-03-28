@@ -1,0 +1,23 @@
+version: '3.2'
+services:
+  postgres:
+    restart: always
+    container_name: sample_db
+    image: postgres:13.0
+    ports:
+      - '5432:5432'
+    environment:
+         - POSTGRES_PASSWORD=New123456
+         - POSTGRES_USER=postgres
+         - POSTGRES_DB=weWurx
+
+# APP**
+  web:
+    build: ./weWurx
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/weWurx
+    expose:
+      - '8080'
+    ports:
+      - '8080:8080'
+
